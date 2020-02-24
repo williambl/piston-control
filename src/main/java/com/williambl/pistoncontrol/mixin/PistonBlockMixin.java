@@ -1,15 +1,16 @@
 package com.williambl.pistoncontrol.mixin;
 
-import jdk.internal.org.objectweb.asm.Opcodes;
 import net.minecraft.block.Block;
+import net.minecraft.block.PistonBlock;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(Block.class)
+@Mixin(PistonBlock.class)
 public class PistonBlockMixin {
     @Redirect(
-            at = @At(value = "FIELD", target = "net.minecraft.block.Blocks.OBSIDIAN", opcode = Opcodes.GETSTATIC),
+            at = @At(value = "FIELD", target = "Lnet/minecraft/block/Blocks;OBSIDIAN:Lnet/minecraft/block/Block;", opcode = Opcodes.GETSTATIC),
             method = "isMovable"
     )
     private static Block getObsidianBlock() {
