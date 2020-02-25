@@ -15,6 +15,7 @@ public class PistonControl implements ModInitializer {
 	public static Tag<Block> PISTON_BEHAVIOR_BLOCK = TagRegistry.block(new Identifier(MODID, "piston_behavior_block"));
 	public static Tag<Block> PISTON_BEHAVIOR_IGNORE = TagRegistry.block(new Identifier(MODID, "piston_behavior_ignore"));
 	public static Tag<Block> PISTON_BEHAVIOR_PUSH_ONLY = TagRegistry.block(new Identifier(MODID, "piston_behavior_push_only"));
+	public static Tag<Block> STICKY_BLOCKS = TagRegistry.block(new Identifier(MODID, "sticky_blocks"));
 
 	@Override
 	public void onInitialize() {
