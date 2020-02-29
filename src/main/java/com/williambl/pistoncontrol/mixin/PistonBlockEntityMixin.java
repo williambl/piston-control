@@ -20,8 +20,19 @@ public class PistonBlockEntityMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;updateNeighbor(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;Lnet/minecraft/util/math/BlockPos;)V"),
             method = "finish"
     )
-    private void moveBE(CallbackInfo info) {
-        PistonBlockEntity thisAsPBE = (PistonBlockEntity) (Object) this;
+    private void onFinish(CallbackInfo info) {
+        moveBE((PistonBlockEntity) (Object) this);
+    }
+
+    @Inject(
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;updateNeighbor(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/Block;Lnet/minecraft/util/math/BlockPos;)V"),
+            method = "tick"
+    )
+    private void onTick(CallbackInfo info) {
+        moveBE((PistonBlockEntity) (Object) this);
+    }
+
+    private void moveBE(PistonBlockEntity thisAsPBE) {
         BlockPos pos = thisAsPBE.getPos();
         World world = thisAsPBE.getWorld();
         if (world == null)
@@ -32,14 +43,13 @@ public class PistonBlockEntityMixin {
             return;
         }
         CompoundTag tag = ((PistonBlockHooks) Blocks.PISTON).getBlockEntityTags().get(thisAsPBE);
+        if (tag == null)
+            return;
         tag.putInt("x", pos.getX());
         tag.putInt("y", pos.getY());
         tag.putInt("z", pos.getZ());
         System.out.println(tag.toString());
 
-        world.removeBlockEntity(pos);
-        world.removeBlock(pos, true);
-        world.setBlockState(pos, bs);
         world.getBlockEntity(pos).fromTag(tag);
         ((ServerWorld) world).getChunkManager().markForUpdate(pos);
     }

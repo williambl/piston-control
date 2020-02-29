@@ -70,7 +70,8 @@ public class PistonBlockMixin extends Block implements PistonBlockHooks {
     @Redirect(
             at = @At(
                     value = "INVOKE",
-                    target = "net/minecraft/block/PistonExtensionBlock.createBlockEntityPiston(Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/Direction;ZZ)Lnet/minecraft/block/entity/BlockEntity;"
+                    target = "net/minecraft/block/PistonExtensionBlock.createBlockEntityPiston(Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/Direction;ZZ)Lnet/minecraft/block/entity/BlockEntity;",
+                    ordinal = 0
             ),
             method = "move"
     )
