@@ -4,13 +4,13 @@
   "version": "${version}",
 
   "name": "Piston Control",
-  "description": "Control what pistons can push with tags.",
+  "description": "Control what pistons can push with tags. Also allows pistons to push block entities.",
   "authors": [
     "Willbl3pic"
   ],
   "contact": {
-    "homepage": "",
-    "sources": ""
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/piston-control/",
+    "sources": "https://github.com/williambl/piston-control/"
   },
 
   "license": "MIT",
@@ -32,5 +32,8 @@
     "minecraft": ">=1.15 <1.17"
   },
   "suggests": {
+  },
+  "custom": {
+    "modmenu:api": true
   }
 }
