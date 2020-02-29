@@ -6,7 +6,8 @@
     "BlockStateMixin",
     "PistonBlockMixin",
     "PistonHandlerMixin",
-    "PistonBlockEntityMixin"
+    "PistonBlockEntityMixin",
+    "EntityMixin"
   ],
   "client": [
   ],
