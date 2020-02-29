@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class BlockStateMixin {
     @Inject(
             at = @At("HEAD"),
-            method = "net/minecraft/block/BlockState.getPistonBehavior()Lnet/minecraft/block/piston/PistonBehavior;",
+            method = "getPistonBehavior()Lnet/minecraft/block/piston/PistonBehavior;",
             cancellable = true
     )
     private void getPistonBehavior(CallbackInfoReturnable<PistonBehavior> info) {
