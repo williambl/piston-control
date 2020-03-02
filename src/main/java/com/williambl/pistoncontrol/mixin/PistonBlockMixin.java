@@ -11,6 +11,7 @@ import net.minecraft.block.piston.PistonHandler;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
@@ -38,6 +39,14 @@ public class PistonBlockMixin extends Block implements PistonBlockHooks {
     )
     private static Block getObsidianBlock() {
         return null;
+    }
+
+    @Redirect(
+            at = @At(value = "INVOKE", target = "net/minecraft/block/BlockState.getHardness(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)F"),
+            method = "isMovable"
+    )
+    private static float getHardnessValue(BlockState blockState, BlockView world, BlockPos pos) {
+        return 0;
     }
 
     @Redirect(
