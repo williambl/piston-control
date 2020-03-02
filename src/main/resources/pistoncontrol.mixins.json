@@ -7,9 +7,11 @@
     "PistonBlockMixin",
     "PistonHandlerMixin",
     "PistonBlockEntityMixin",
-    "EntityMixin"
+    "EntityMixin",
+    "BlockEntityMixin"
   ],
   "client": [
+    "PistonBlockEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
