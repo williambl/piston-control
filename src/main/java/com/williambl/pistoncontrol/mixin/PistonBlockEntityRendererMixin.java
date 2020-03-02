@@ -23,10 +23,11 @@ public class PistonBlockEntityRendererMixin {
     private void renderBlockEntity(PistonBlockEntity pistonBlockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, int j, CallbackInfo ci) {
         if (pistonBlockEntity.getPushedBlock().getBlock().hasBlockEntity()) {
             BlockEntity be = ((BlockEntityProvider) pistonBlockEntity.getPushedBlock().getBlock()).createBlockEntity(pistonBlockEntity.getWorld());
-            if (be != null) {
+            if (be != null && BlockEntityRenderDispatcher.INSTANCE.get(be) != null) {
                 be.setLocation(pistonBlockEntity.getWorld(), pistonBlockEntity.getPos());
                 ((BlockEntityHooks)be).setCachedState(pistonBlockEntity.getPushedBlock());
                 BlockEntityRenderDispatcher.INSTANCE.render(be, f, matrixStack, vertexConsumerProvider);
+                be.markRemoved();
             }
         }
     }
