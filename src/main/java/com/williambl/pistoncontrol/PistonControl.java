@@ -30,24 +30,5 @@ public class PistonControl implements ModInitializer {
 	@Override
 	public void onInitialize() {
 	}
-
-	public void moveBE(World world, BlockPos pos, Direction direction) {
-		BlockPos newPos = pos.offset(direction.getOpposite());
-		BlockEntity be = world.getBlockEntity(pos);
-		BlockState bs = world.getBlockState(pos);
-		if (be == null)
-			return;
-		if (world.isClient) {
-			world.updateListeners(newPos, bs, bs, 2);
-			return;
-		}
-		be.setPos(newPos);
-		CompoundTag tag = new CompoundTag();
-		be.toTag(tag);
-		world.removeBlockEntity(pos);
-		world.removeBlock(pos, true);
-		world.setBlockState(newPos, bs);
-		world.getBlockEntity(newPos).fromTag(tag);
-		((ServerWorld) world).getChunkManager().markForUpdate(newPos);
-	}
 }
+
