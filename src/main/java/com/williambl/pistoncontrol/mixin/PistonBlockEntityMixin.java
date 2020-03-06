@@ -48,7 +48,6 @@ public class PistonBlockEntityMixin {
         tag.putInt("x", pos.getX());
         tag.putInt("y", pos.getY());
         tag.putInt("z", pos.getZ());
-        System.out.println(tag.toString());
 
         world.getBlockEntity(pos).fromTag(tag);
         ((ServerWorld) world).getChunkManager().markForUpdate(pos);
