@@ -66,7 +66,7 @@ public class PistonBlockMixin extends Block implements PistonBlockHooks {
             method = "move",
             locals = LocalCapture.CAPTURE_FAILHARD
     )
-    private void saveBEs(World world, BlockPos pos, Direction dir, boolean retract, CallbackInfoReturnable<Boolean> cir, BlockPos blockPos, PistonHandler pistonHandler, Map map, List list, List list2, List list3, int j, BlockState[] blockStates, Direction direction, int l, BlockPos blockPos4) {
+    private void saveBEs(World world, BlockPos pos, Direction dir, boolean retract, CallbackInfoReturnable<Boolean> cir, BlockPos blockPos, PistonHandler pistonHandler, Map map, List list, List list2, List list3, BlockState[] blockStates, Direction direction, int j, int l, BlockPos blockPos4) {
         BlockEntity be = world.getBlockEntity(blockPos4);
         world.removeBlockEntity(blockPos4);
         if (be != null) {

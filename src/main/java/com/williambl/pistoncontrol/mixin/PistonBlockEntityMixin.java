@@ -49,7 +49,7 @@ public class PistonBlockEntityMixin {
         tag.putInt("y", pos.getY());
         tag.putInt("z", pos.getZ());
 
-        world.getBlockEntity(pos).fromTag(tag);
+        world.getBlockEntity(pos).fromTag(bs, tag);
         ((ServerWorld) world).getChunkManager().markForUpdate(pos);
     }
 }

@@ -1,6 +1,7 @@
 package com.williambl.pistoncontrol.mixin;
 
 import com.williambl.pistoncontrol.PistonControl;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.piston.PistonBehavior;
 import org.spongepowered.asm.mixin.Mixin;
@@ -8,8 +9,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(BlockState.class)
-public class BlockStateMixin {
+@Mixin(AbstractBlock.AbstractBlockState.class)
+public class AbstractBlockStateMixin {
     @Inject(
             at = @At("HEAD"),
             method = "getPistonBehavior()Lnet/minecraft/block/piston/PistonBehavior;",

@@ -3,7 +3,7 @@
   "package": "com.williambl.pistoncontrol.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "BlockStateMixin",
+    "AbstractBlockStateMixin",
     "PistonBlockMixin",
     "PistonHandlerMixin",
     "PistonBlockEntityMixin",
