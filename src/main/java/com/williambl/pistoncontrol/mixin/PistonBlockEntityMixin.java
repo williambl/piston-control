@@ -3,6 +3,7 @@ package com.williambl.pistoncontrol.mixin;
 import com.williambl.pistoncontrol.PistonBlockHooks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.PistonBlockEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.world.ServerWorld;
@@ -49,7 +50,10 @@ public class PistonBlockEntityMixin {
         tag.putInt("y", pos.getY());
         tag.putInt("z", pos.getZ());
 
-        world.getBlockEntity(pos).fromTag(bs, tag);
+        BlockEntity bEntity = world.getBlockEntity(pos);
+        if (bEntity == null)
+            return;
+        bEntity.fromTag(bs, tag);
         ((ServerWorld) world).getChunkManager().markForUpdate(pos);
     }
 }
