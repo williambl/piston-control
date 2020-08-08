@@ -14,6 +14,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
+import java.util.HashMap;
+
 public class PistonControl implements ModInitializer {
 
 	private static String MODID = "pistoncontrol";
@@ -27,8 +29,14 @@ public class PistonControl implements ModInitializer {
 	public static Tag<EntityType<?>> ENTITY_PISTON_BEHAVIOR_NORMAL = TagRegistry.entityType(new Identifier(MODID, "piston_behavior_normal"));
 	public static Tag<EntityType<?>> PISTON_BEHAVIOR_IGNORE = TagRegistry.entityType(new Identifier(MODID, "piston_behavior_ignore"));
 
+	public static final InverseBlockTagMap STICKY_MAP = new InverseBlockTagMap();
+
 	@Override
 	public void onInitialize() {
+	}
+
+	public static String getMODID() {
+		return MODID;
 	}
 }
 
