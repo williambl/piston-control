@@ -4,11 +4,13 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "AbstractBlockStateMixin",
-    "PistonBlockMixin",
-    "PistonHandlerMixin",
-    "PistonBlockEntityMixin",
+    "BlockEntityMixin",
     "EntityMixin",
-    "BlockEntityMixin"
+    "MinecraftServerReloadResourcesMixin",
+    "PistonBlockEntityMixin",
+    "PistonBlockMixin",
+    "PistonHandlerAdjacentStuckMixin",
+    "PistonHandlerMixin"
   ],
   "client": [
     "PistonBlockEntityRendererMixin"
