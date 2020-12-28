@@ -26,7 +26,7 @@ public abstract class PistonHandlerMixin {
             cancellable = true
     )
     private static void overrideBlockStickiness(Block block, CallbackInfoReturnable<Boolean> info) {
-        info.setReturnValue(STICKY_BLOCKS.contains(block) || STICKY_MAP.containsKey(block));
+        info.setReturnValue(STICKY_BLOCKS.contains(block));
     }
 
     @Inject(
