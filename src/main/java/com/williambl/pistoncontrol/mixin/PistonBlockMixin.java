@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
@@ -32,13 +33,14 @@ public class PistonBlockMixin extends Block implements PistonBlockHooks {
         super(settings);
     }
 
-    //bypass obsidian check
+    //bypass the hardcoded obsidian checks
     @Redirect(
-            at = @At(value = "FIELD", target = "Lnet/minecraft/block/Blocks;OBSIDIAN:Lnet/minecraft/block/Block;", opcode = Opcodes.GETSTATIC),
-            method = "isMovable"
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z"),
+            method = "isMovable",
+            slice = @Slice(to = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getWorldBorder()Lnet/minecraft/world/border/WorldBorder;"))
     )
-    private static Block getObsidianBlock() {
-        return null;
+    private static boolean isObsidian(BlockState blockState, Block block) {
+        return false;
     }
 
     //ignore infinite hardness (like bedrock)
