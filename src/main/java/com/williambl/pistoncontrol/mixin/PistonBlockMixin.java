@@ -26,13 +26,13 @@ import java.util.Map;
 
 @Mixin(PistonBlock.class)
 public class PistonBlockMixin extends Block implements PistonBlockHooks {
-
     private CompoundTag tmpBlockEntityTag = null;
 
     public PistonBlockMixin(Settings settings) {
         super(settings);
     }
 
+    //bypass obsidian check
     @Redirect(
             at = @At(value = "FIELD", target = "Lnet/minecraft/block/Blocks;OBSIDIAN:Lnet/minecraft/block/Block;", opcode = Opcodes.GETSTATIC),
             method = "isMovable"
@@ -41,6 +41,7 @@ public class PistonBlockMixin extends Block implements PistonBlockHooks {
         return null;
     }
 
+    //ignore infinite hardness (like bedrock)
     @Redirect(
             at = @At(value = "INVOKE", target = "net/minecraft/block/BlockState.getHardness(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)F"),
             method = "isMovable"
@@ -49,6 +50,7 @@ public class PistonBlockMixin extends Block implements PistonBlockHooks {
         return 0;
     }
 
+    //allow pistons to push blocks with entities
     @Redirect(
             at = @At(value = "INVOKE", target = "net/minecraft/block/Block.hasBlockEntity()Z"),
             method = "isMovable"
@@ -89,5 +91,4 @@ public class PistonBlockMixin extends Block implements PistonBlockHooks {
         blockEntityTags.put(be, tmpBlockEntityTag);
         return be;
     }
-
 }

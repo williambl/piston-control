@@ -4,11 +4,11 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "AbstractBlockStateMixin",
-    "PistonBlockMixin",
-    "PistonHandlerMixin",
-    "PistonBlockEntityMixin",
+    "BlockEntityMixin",
     "EntityMixin",
-    "BlockEntityMixin"
+    "PistonBlockEntityMixin",
+    "PistonBlockMixin",
+    "PistonHandlerMixin"
   ],
   "client": [
     "PistonBlockEntityRendererMixin"
