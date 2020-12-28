@@ -6,7 +6,6 @@
     "AbstractBlockStateMixin",
     "BlockEntityMixin",
     "EntityMixin",
-    "MinecraftServerReloadResourcesMixin",
     "PistonBlockEntityMixin",
     "PistonBlockMixin",
     "PistonHandlerMixin"

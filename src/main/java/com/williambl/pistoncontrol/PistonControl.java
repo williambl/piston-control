@@ -3,11 +3,15 @@ package com.williambl.pistoncontrol;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
+
+import java.util.Map;
 
 public class PistonControl implements ModInitializer {
 
@@ -25,6 +29,24 @@ public class PistonControl implements ModInitializer {
 	public static final Multimap<Block, Tag<Block>> STICKY_MAP = HashMultimap.create();
 
 	@Override
-	public void onInitialize() {}
+	public void onInitialize() {
+		ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, manager, success) -> {
+			populateStickyMap();
+		});
+		ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
+			populateStickyMap();
+		});
+	}
+
+	private void populateStickyMap() {
+		STICKY_MAP.clear();
+
+		Map<Identifier, Tag<Block>> tags = BlockTags.getContainer().getEntries();
+		tags.keySet().stream().filter(it -> it.getPath().startsWith("selectively_sticky"))
+				.forEach(id -> {
+					Tag<Block> tag = tags.get(id);
+					tag.values().forEach(block -> STICKY_MAP.put(block, tag));
+				});
+	}
 }
 
