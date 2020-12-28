@@ -1,13 +1,15 @@
 package com.williambl.pistoncontrol.mixin;
 
-import com.williambl.pistoncontrol.PistonControl;
 import net.minecraft.block.Block;
 import net.minecraft.block.piston.PistonHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.Collection;
 
 import static com.williambl.pistoncontrol.PistonControl.STICKY_BLOCKS;
 import static com.williambl.pistoncontrol.PistonControl.STICKY_MAP;
@@ -33,10 +35,15 @@ public abstract class PistonHandlerMixin {
             cancellable = true
     )
     private static void overrideAdjacentStickiness(Block block, Block block2, CallbackInfoReturnable<Boolean> cir) {
-        if (STICKY_MAP.containsKey(block) && STICKY_MAP.containsKey(block2) && !STICKY_MAP.get(block).intersects(STICKY_MAP.get(block2))) {
+        if (STICKY_MAP.containsKey(block) && STICKY_MAP.containsKey(block2) && !intersect(STICKY_MAP.get(block), STICKY_MAP.get(block2))) {
             cir.setReturnValue(false);
         } else {
             cir.setReturnValue(isBlockSticky(block) || isBlockSticky(block2));
         }
+    }
+
+    @Unique
+    private static <T> boolean intersect(Collection<T> one, Collection<T> two) {
+        return one.stream().anyMatch(two::contains);
     }
 }

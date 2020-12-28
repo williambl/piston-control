@@ -1,5 +1,7 @@
 package com.williambl.pistoncontrol;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.Block;
@@ -29,7 +31,7 @@ public class PistonControl implements ModInitializer {
 	public static Tag<EntityType<?>> ENTITY_PISTON_BEHAVIOR_NORMAL = TagRegistry.entityType(new Identifier(MODID, "piston_behavior_normal"));
 	public static Tag<EntityType<?>> PISTON_BEHAVIOR_IGNORE = TagRegistry.entityType(new Identifier(MODID, "piston_behavior_ignore"));
 
-	public static final InverseBlockTagMap STICKY_MAP = new InverseBlockTagMap();
+	public static final Multimap<Block, Tag<Block>> STICKY_MAP = HashMultimap.create();
 
 	@Override
 	public void onInitialize() {
