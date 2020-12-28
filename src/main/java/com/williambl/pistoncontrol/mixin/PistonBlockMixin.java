@@ -26,7 +26,6 @@ import java.util.Map;
 
 @Mixin(PistonBlock.class)
 public class PistonBlockMixin extends Block implements PistonBlockHooks {
-
     private CompoundTag tmpBlockEntityTag = null;
 
     public PistonBlockMixin(Settings settings) {
@@ -92,5 +91,4 @@ public class PistonBlockMixin extends Block implements PistonBlockHooks {
         blockEntityTags.put(be, tmpBlockEntityTag);
         return be;
     }
-
 }

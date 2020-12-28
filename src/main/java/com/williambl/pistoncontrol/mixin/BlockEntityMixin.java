@@ -8,7 +8,6 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(BlockEntity.class)
 public class BlockEntityMixin implements BlockEntityHooks {
-
     @Shadow private BlockState cachedState;
 
     @Override

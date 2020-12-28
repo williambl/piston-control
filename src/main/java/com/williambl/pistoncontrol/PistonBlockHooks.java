@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public interface PistonBlockHooks {
-
     Map<PistonBlockEntity, CompoundTag> blockEntityTags = new HashMap<>();
 
     default Map<PistonBlockEntity, CompoundTag> getBlockEntityTags() {
