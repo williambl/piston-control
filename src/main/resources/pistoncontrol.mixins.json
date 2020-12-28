@@ -9,7 +9,6 @@
     "MinecraftServerReloadResourcesMixin",
     "PistonBlockEntityMixin",
     "PistonBlockMixin",
-    "PistonHandlerAdjacentStuckMixin",
     "PistonHandlerMixin"
   ],
   "client": [
