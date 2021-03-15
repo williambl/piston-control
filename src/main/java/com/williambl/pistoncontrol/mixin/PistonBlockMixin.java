@@ -35,11 +35,26 @@ public class PistonBlockMixin extends Block implements PistonBlockHooks {
 
     //bypass the hardcoded obsidian checks
     @Redirect(
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z"),
-            method = "isMovable",
-            slice = @Slice(to = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getWorldBorder()Lnet/minecraft/world/border/WorldBorder;"))
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z", ordinal = 0),
+            method = "isMovable"
     )
     private static boolean isObsidian(BlockState blockState, Block block) {
+        return false;
+    }
+
+    @Redirect(
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z", ordinal = 1),
+            method = "isMovable"
+    )
+    private static boolean isCryingObsidian(BlockState blockState, Block block) {
+        return false;
+    }
+
+    @Redirect(
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z", ordinal = 2),
+            method = "isMovable"
+    )
+    private static boolean isRespawnAnchor(BlockState blockState, Block block) {
         return false;
     }
 

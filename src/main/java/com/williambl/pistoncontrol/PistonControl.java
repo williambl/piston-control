@@ -41,7 +41,7 @@ public class PistonControl implements ModInitializer {
 	private void populateStickyMap() {
 		STICKY_MAP.clear();
 
-		Map<Identifier, Tag<Block>> tags = BlockTags.getContainer().getEntries();
+		Map<Identifier, Tag<Block>> tags = BlockTags.getTagGroup().getTags();
 		tags.keySet().stream().filter(it -> it.getPath().startsWith("selectively_sticky"))
 				.forEach(id -> {
 					Tag<Block> tag = tags.get(id);
